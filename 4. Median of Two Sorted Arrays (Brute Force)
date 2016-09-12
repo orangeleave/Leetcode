@@ -1,0 +1,70 @@
+public class Solution {
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int i = 0, j = 0;
+        double median;
+        List <Integer> nums = new ArrayList <Integer> ();
+        if ((nums1.length == 0) && (nums2.length == 0)) {
+            return 0;
+        } else if (nums1.length == 0) {
+            for (; j < nums2.length; j++){
+                nums.add(nums2[j]);
+            }
+        } else if (nums2.length == 0){
+            for (; i < nums1.length; i++){
+                nums.add(nums1[i]);
+            }
+        } else {
+        while ((i < nums1.length - 1) && j < (nums2.length - 1)) {
+            if ( nums1[i] <= nums2[j]) {
+                nums.add (nums1[i]);
+                i++;
+            } else {
+                nums.add (nums2[j]);
+                j++;
+            }
+        }
+        while (j < nums2.length - 1) {
+            if (nums1[i] > nums2[j]) {
+                nums.add (nums2[j]);
+                j++;
+            } else {
+                nums.add (nums1[i]);
+                for (;j < nums2.length; j++) {
+                    nums.add (nums2[j]);
+                }
+            }
+        }
+        while (i < nums1.length - 1) {
+            if (nums1[i] <= nums2[j]) {
+                nums.add (nums1[i]);
+                i++;
+            } else {
+                nums.add (nums2[j]);
+                for (;i < nums1.length; i++) {
+                    nums.add (nums1[i]);
+                }
+            }
+        }
+        while ((i == nums1.length - 1) && (j == nums2.length - 1)) {
+            if (nums1[i] <= nums2[j]) {
+                nums.add (nums1[i]);
+                nums.add (nums2[j]);
+                i++;
+            } else {
+                nums.add (nums2[j]);
+                nums.add (nums1[i]);
+                i++;
+            }
+        }
+        }
+        if (nums.size() % 2 == 0){
+        	double a = nums.get(nums.size() / 2 - 1);
+        	double b = nums.get(nums.size() / 2);
+            median = (a + b ) / 2;
+        } else {
+            median = nums.get((nums.size() - 1) / 2);
+        }
+        return median;
+    }
+
+}
