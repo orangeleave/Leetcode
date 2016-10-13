@@ -1,5 +1,14 @@
 public class Solution {
     public String reverseString(String s) {
+    
+    //updated solution (more concise version)
+        StringBuffer res = new StringBuffer();
+        char[] str = s.toCharArray();
+        int len = str.length;
+        for (int i = 0; i < len; i ++)  res.append(str[len - i - 1]);
+        return res.toString();
+
+/*  //my own version, using two pointers
         char[] str = s.toCharArray();
         int i = 0;
         int j = str.length - 1;
@@ -13,5 +22,6 @@ public class Solution {
         StringBuffer res = new StringBuffer();
         for (char k: str)    res.append(k);
         return res.toString();
+*/
     }
 }
