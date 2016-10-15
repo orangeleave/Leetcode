@@ -6,6 +6,8 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+ 
+ /* Method 1:
 public class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode newHead = null;
@@ -18,3 +20,19 @@ public class Solution {
         return newHead;
     }
 }
+*/
+
+/* Method 2:
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+        return reverseListAux(head, null);
+    }
+    private ListNode reverseListAux(ListNode head, ListNode newHead) {
+        if (head == null)    return newHead;
+        ListNode next = head.next;
+        head.next = newHead;
+        newHead = next;
+        return reverseListAux(next, head);
+    }
+}
+*/
