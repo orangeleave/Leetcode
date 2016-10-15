@@ -7,7 +7,7 @@
  * }
  */
  
- /* Method 1:
+ /* Method 1: iteratively
 public class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode newHead = null;
@@ -22,7 +22,7 @@ public class Solution {
 }
 */
 
-/* Method 2:
+/* Method 2: recursively
 public class Solution {
     public ListNode reverseList(ListNode head) {
         return reverseListAux(head, null);
