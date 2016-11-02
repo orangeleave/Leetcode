@@ -1,0 +1,17 @@
+public class Solution {
+    public int reverse(int x) {
+        List<Integer> list = new ArrayList<Integer>();
+        int res = 0;
+        int testRes = 0;
+        while (x != 0) {
+            list.add(x % 10);
+            x = x / 10;
+        }
+        for (int i = 0; i < list.size(); i++) {
+            testRes = res * 10 + list.get(i);
+            if (testRes % 10 != list.get(i))    return 0;
+            res = testRes;
+        }
+        return res;
+    }
+}
