@@ -7,7 +7,7 @@
  * }
  */
 
-// Written on 11/02/2016
+// Written on 11/02/2016 (iteratively)
 public class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode previous = null;
@@ -20,6 +20,22 @@ public class Solution {
         return previous;
     }
 }
+
+// Written on 11/02/2016 (recursively)
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+        return reverseListAux(head, null);
+    }
+    
+    private ListNode reverseListAux(ListNode head, ListNode previous) {
+        if (head == null)   return previous;
+        ListNode next = head.next;
+        head.next = previous;
+        previous = head;
+        return reverseListAux(next, head);
+    }
+}
+
 
  /* Method 1: iteratively
 public class Solution {
