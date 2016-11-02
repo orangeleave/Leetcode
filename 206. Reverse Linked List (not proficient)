@@ -6,7 +6,21 @@
  *     ListNode(int x) { val = x; }
  * }
  */
- 
+
+// Written on 11/02/2016
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode previous = null;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = previous;
+            previous = head;
+            head = next;
+        }
+        return previous;
+    }
+}
+
  /* Method 1: iteratively
 public class Solution {
     public ListNode reverseList(ListNode head) {
