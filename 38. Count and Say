@@ -1,0 +1,28 @@
+public class Solution {
+    public String countAndSay(int n) {
+        String res = "1";
+        if (n <= 1) return res;
+        for (int i = 1; i < n; i++) {
+            StringBuilder sb = new StringBuilder();
+            int size = res.length();
+            int j = 0, count = 1;
+            char cur = res.charAt(j);
+            while (j < size) {
+                if (j == size - 1) {
+                    sb.append(count);
+                    sb.append(res.charAt(j));
+                    j++;
+                } else if (res.charAt(j) == res.charAt(j + 1)) {
+                    count++;
+                    j++;
+                } else {
+                    sb.append(count);
+                    sb.append(res.charAt(j++));
+                    count = 1;
+                }
+            }
+            res = sb.toString();
+        }
+        return res;
+    }
+}
