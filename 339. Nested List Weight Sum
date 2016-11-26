@@ -22,8 +22,7 @@ public class Solution {
     public int depthSum(List<NestedInteger> nestedList, int depth) {
         int res = 0;
         int n = nestedList.size();
-        for (int i = 0; i < n; i++) {
-            NestedInteger nl = nestedList.get(i);
+        for (NestedInteger nl : nestedList) {
             if (nl.isInteger()) {
                 res = res + nl.getInteger() * depth;
             } else {
