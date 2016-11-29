@@ -1,0 +1,14 @@
+public class Solution {
+    public int strStr(String haystack, String needle) {
+    
+    //Since it's a "dead" loop, so no return statement is still fine.
+    
+        for (int i = 0; ; i++) {
+            for (int j = 0; ; j++) {
+                if (j == needle.length())   return i; //if it continues to this sentence, then the comparison is successful and completed
+                if (i + j == haystack.length()) return -1;  //still find no matching
+                if (haystack.charAt(i + j) != needle.charAt(j)) break;  //break to the outer loop
+            }
+        }
+    }
+}
