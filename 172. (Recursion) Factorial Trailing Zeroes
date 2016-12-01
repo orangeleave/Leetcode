@@ -1,0 +1,15 @@
+public class Solution {
+
+//Version 1:
+    public class Solution {
+        public int trailingZeroes(int n) {
+            return n == 0 ? 0 : n / 5 + trailingZeroes(n / 5);
+        }
+    }
+
+// Version 2:
+    public int trailingZeroes(int n) {
+        if (n == 0) return 0;
+        return n / 5 + trailingZeroes(n / 5);
+    }
+}
