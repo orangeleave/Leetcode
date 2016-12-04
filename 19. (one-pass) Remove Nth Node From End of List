@@ -1,0 +1,24 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode start = new ListNode(0); //create a new node valued 0
+        ListNode begin = start, end = start;
+        begin.next = head; //since pointer begin and end are binded to start, so change begin would be enough
+        for (int i = 0; i <= n; i++) {
+            end = end.next;
+        }
+        while (end != null) {
+            end = end.next;
+            begin = begin.next;
+        }
+        begin.next = begin.next.next;
+        return start.next; //notice here we cannot return head, or when the programe just jump over while-loop, it'll turn out to be wrong.
+    }
+}
