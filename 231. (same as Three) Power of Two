@@ -1,0 +1,6 @@
+public class Solution {
+    public boolean isPowerOfTwo(int n) {
+        int maxPower = (int)Math.pow(2, (int)(Math.log(0x7fffffff) / Math.log(2)));
+        return n > 0 && maxPower % n == 0;
+    }
+}
