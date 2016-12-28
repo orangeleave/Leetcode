@@ -8,6 +8,16 @@
  * }
  */
 public class Solution {
+
+//concise version
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null)   return false;
+        if (root.left == null && root.right == null && sum - root.val == 0) return true;
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
+
+
+//old version
     public boolean hasPathSum(TreeNode root, int sum) {
         if (root == null)   return false;
         while (root.left != null || root.right != null) {
