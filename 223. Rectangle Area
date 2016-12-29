@@ -1,0 +1,13 @@
+public class Solution {
+    public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int areaFirst = (D - B) * (C - A);
+        int areaSecond = (H - F) * (G - E);
+        int left = Math.max(A, E);
+        int right = Math.min(C, G);
+        int top = Math.min(D, H);
+        int bottom = Math.max(B, F);
+        int areaOverlap = 0;
+        if (right > left && top > bottom)   areaOverlap = (right - left) * (top - bottom);
+        return areaFirst + areaSecond - areaOverlap;
+    }
+}
