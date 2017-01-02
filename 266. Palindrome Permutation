@@ -1,0 +1,16 @@
+public class Solution {
+    public boolean canPermutePalindrome(String s) {
+        if (s.length() == 0)    return true;
+        int count = 0;
+        Set<Character> set = new HashSet<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (set.add(s.charAt(i))) {
+                count++;
+            } else {
+                count--;
+                set.remove(s.charAt(i));
+            }
+        }
+        return count <= 1;
+    }
+}
