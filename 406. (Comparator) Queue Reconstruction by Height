@@ -1,4 +1,20 @@
 public class Solution {
+//consice version
+    public int[][] reconstructQueue(int[][] people) {
+        List<int[]> res = new ArrayList<>();
+        Arrays.sort(people, new Comparator<int[]>() {
+            public int compare(int[] a, int[]b) {
+                return a[0] == b[0] ? a[1] - b[1] :b[0] - a[0];
+            }
+        });
+        for (int[] i : people) {
+            res.add(i[1], i);
+        }
+        return res.toArray(new int[people.length][2]);
+    }
+
+
+//old version
     public int[][] reconstructQueue(int[][] people) {
         int[][] res = new int[people.length][2];
         Arrays.sort(people, new Comparator<int[]>() {
