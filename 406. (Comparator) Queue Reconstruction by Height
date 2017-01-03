@@ -1,0 +1,22 @@
+public class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        int[][] res = new int[people.length][2];
+        Arrays.sort(people, new Comparator<int[]>() {
+            public int compare(int[] a, int[] b) {
+                if (a[0] == b[0])   return a[1] - b[1];
+                return b[0] - a[0];
+            }
+        });
+        int n = people.length;
+        List<int[]> tmp = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            tmp.add(people[i][1], new int[]{people[i][0], people[i][1]});
+        }
+        int i = 0;
+        for (int[] j : tmp) {
+            res[i][0] = j[0];
+            res[i++][1] = j[1];
+        }
+        return res;
+    }
+}
