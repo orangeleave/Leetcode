@@ -7,7 +7,7 @@
  * }
  */
 public class Solution {
-//consice version
+//consice version (Using two pointers)
     public ListNode plusOne(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
