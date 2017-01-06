@@ -1,0 +1,12 @@
+public class Solution {
+    public String parseTernary(String expression) {
+        while (expression.length() != 1) {
+            int i = expression.lastIndexOf('?');
+            char res;
+            if (expression.charAt(i - 1) == 'T')    res = expression.charAt(i + 1);
+            else    res = expression.charAt(i + 3);
+            expression = expression.substring(0, i - 1) + res + expression.substring(i + 4);
+        }
+        return expression;
+    }
+}
