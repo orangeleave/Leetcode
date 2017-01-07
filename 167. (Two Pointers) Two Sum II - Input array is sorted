@@ -7,7 +7,7 @@ public class Solution {
             if (sum == target) {
                 res[0] = i + 1;
                 res[1] = j + 1;
-                i = j;
+                i = j;  //or using break;
             } else if (sum < target)    i++;
             else    j--;
         }
