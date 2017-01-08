@@ -1,0 +1,45 @@
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        Deque<ListNode> stack1 = makeStack(l1);
+        Deque<ListNode> stack2 = makeStack(l2);
+        Deque<ListNode> stack = new LinkedList<>();
+        int c = 0;
+        while (!stack1.isEmpty() && !stack2.isEmpty()) {
+            int sum = stack1.pop().val + stack2.pop().val + c;
+            c = push(stack, sum, c);
+        }
+        while (!stack1.isEmpty()) {
+            int sum = stack1.pop().val + c;
+            c = push(stack, sum, c);
+        }
+        while (!stack2.isEmpty()) {
+            int sum = stack2.pop().val + c;
+            c = push(stack, sum, c);
+        }
+        ListNode res = new ListNode(1);
+        ListNode next = res;
+        while (!stack.isEmpty()) {
+            next.next = stack.pop();
+            next = next.next;
+        }
+        return c == 1 ? res : res.next;
+    }
+    public Deque<ListNode> makeStack(ListNode head) {
+        Deque<ListNode> stack = new LinkedList<>();
+        while (head != null) {
+            stack.push(head);
+            head = head.next;
+        }
+        return stack;
+    }
+    public int push(Deque<ListNode> stack, int sum, int c) {
+        if (sum > 9) {
+            stack.push(new ListNode(sum - 10));
+            c = 1;
+        } else {
+            stack.push(new ListNode(sum));
+            c = 0;
+        }
+        return c;
+    }
+}
