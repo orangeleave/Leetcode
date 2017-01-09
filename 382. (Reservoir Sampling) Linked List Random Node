@@ -1,0 +1,23 @@
+public class Solution {
+    ListNode head;
+
+    /** @param head The linked list's head.
+        Note that the head is guaranteed to be not null, so it contains at least one node. */
+    public Solution(ListNode head) {
+        this.head = head;
+    }
+    
+    /** Returns a random node's value. */
+    public int getRandom() {
+        ListNode curr = head;
+        int res = curr.val;
+        for (int i = 1; curr.next != null; i++) {
+            curr = curr.next;
+            if (random(0, i) == i)  res = curr.val;
+        }
+        return res;
+    }
+    private int random(int min, int max) {
+        return min + (int)(Math.random() * (max - min + 1));
+    }
+}
