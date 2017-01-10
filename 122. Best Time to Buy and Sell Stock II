@@ -1,4 +1,14 @@
 public class Solution {
+//it turns out to be very easy
+    public int maxProfit(int[] prices) {
+        int maxProfit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1])  maxProfit += prices[i] - prices[i - 1];
+        }
+        return maxProfit;
+    }
+
+//old version
     public int maxProfit(int[] prices) {
         int res = 0, i = 0, j = -1;
         for (int k = 1; k < prices.length; k++) {
