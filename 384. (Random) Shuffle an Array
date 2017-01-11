@@ -1,0 +1,27 @@
+public class Solution {
+    int[] nums;
+    Random r;
+
+    public Solution(int[] nums) {
+        this.nums = nums;
+        r = new Random();
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    public int[] reset() {
+        return nums;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle() {
+        if (nums.length == 0)   return nums;
+        int[] res = nums.clone();
+        for (int i = 1; i < res.length; i++) {
+            int index = r.nextInt(i + 1);
+            int tmp = res[index];
+            res[index] = res[i];
+            res[i] = tmp;
+        }
+        return res;
+    }
+}
