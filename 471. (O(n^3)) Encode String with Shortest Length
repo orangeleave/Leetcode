@@ -1,0 +1,30 @@
+public class Solution {
+    public String encode(String s) {
+        String[][] dp = new String[s.length()][s.length()];
+        for (int d = 0; d < s.length(); d++) {
+            for (int i = 0; i < s.length() - d; i++) {
+                int j = i + d;
+                String subStr = s.substring(i, j + 1);
+                dp[i][j] = subStr;
+                if (d > 3) {
+                    for (int k = i; k < j; k++) {
+                        if ((dp[i][k] + dp[k + 1][j]).length() < dp[i][j].length())
+                            dp[i][j] = dp[i][k] + dp[k + 1][j];
+                    }
+                    for (int k = 0; k < subStr.length(); k++) {
+                        String repStr = subStr.substring(0, k + 1);
+                        if (repStr != null && subStr.length() % repStr.length() == 0) {
+                            if (subStr.replaceAll(repStr, "").length() == 0) {
+                                int count = subStr.length() / repStr.length();
+                                String encStr = count + "[" + dp[i][i + k] + "]";
+                                if (encStr.length() < dp[i][j].length())
+                                    dp[i][j] = encStr;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return dp[0][s.length() - 1];
+    }
+}
