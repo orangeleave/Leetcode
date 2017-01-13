@@ -1,0 +1,12 @@
+public class Solution {
+    public boolean isSubsequence(String s, String t) {
+        Queue<Character> Q = new LinkedList<>();
+        for (char c : t.toCharArray())      Q.offer(c);
+        int i = 0;
+        while (i < s.length() && !Q.isEmpty()) {
+            if (s.charAt(i) == Q.poll())    i++;
+        }
+        if (i < s.length())     return false;
+        return true;
+    }
+}
