@@ -1,0 +1,10 @@
+public class Solution {
+    public int missingNumber(int[] nums) {
+        int XOR = 0, i = 0;
+        while (i < nums.length) {
+            XOR ^= i ^ nums[i];
+            i++;
+        }
+        return XOR ^ i;
+    }
+}
