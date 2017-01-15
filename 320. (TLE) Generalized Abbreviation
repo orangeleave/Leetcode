@@ -1,0 +1,28 @@
+public class Solution {
+    public List<String> generateAbbreviations(String word) {
+        List<String> res = new ArrayList<>();
+        if (word == null)   return res;
+        helper(res, word, word.length(), "", 0);
+        return res;
+    }
+    private void helper(List<String> res, String word, int count, String sum, int initial) {
+        if (count == 0) {
+            res.add(sum);
+            return;
+        }
+        for (int i = initial; i < word.length(); i++) {
+            if (sum.length() != 0) {
+                String str = sum;
+                if (str.charAt(str.length() - 1) < 97) {
+                    int c = 1 + str.charAt(str.length() - 1) - '1';
+                    str = str.substring(0, str.length() - 1) + Integer.toString(c + 1);
+                }
+                else    str = str + '1';
+                helper(res, word, count - 1, str, i + 1);
+            } else {
+                helper(res, word, count - 1, "1", i + 1);
+            }
+            helper(res, word, count - 1, sum + word.charAt(i), i + 1);
+        }
+    }
+}
