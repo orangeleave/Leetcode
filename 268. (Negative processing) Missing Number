@@ -1,0 +1,19 @@
+public class Solution {
+    public int missingNumber(int[] nums) {
+        int flagZero = -1, flagN = -1;
+        for (int i = 0; i < nums.length; i++) {
+            int index = Math.abs(nums[i]);
+            if (index < nums.length) {
+                if (nums[index] == 0)   flagZero = 1;
+                else    nums[index] = -nums[index];
+            } else {
+                flagN = 1;
+            }
+        }
+        if (flagN < 0)      return nums.length;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > 0 || (nums[i] == 0 && flagZero < 0))   return i;
+        }
+        return -1;
+    }
+}
