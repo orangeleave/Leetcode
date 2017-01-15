@@ -1,0 +1,16 @@
+public class Solution {
+    public List<String> generateAbbreviations(String word) {
+        List<String> res = new ArrayList<>();
+        backtrack(res, word, 0, 0, "");
+        return res;
+    }
+    private void backtrack(List<String> res, String word, int pos, int count, String curr) {
+        if (pos == word.length()) {
+            if (count > 0)      curr+= count;
+            res.add(curr);
+        } else {
+            backtrack(res, word, pos + 1, count + 1, curr);
+            backtrack(res, word, pos + 1, 0, curr + (count > 0 ? count : "") + word.charAt(pos));
+        }
+    }
+}
