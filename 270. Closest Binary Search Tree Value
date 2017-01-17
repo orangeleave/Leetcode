@@ -1,0 +1,17 @@
+public class Solution {
+    public int closestValue(TreeNode root, double target) {
+        int left = root.val, right = root.val;
+        while (root != null) {
+            if (root.val <= target) {
+                left = root.val;
+                root = root.right;
+            } else {
+                right = root.val;
+                root = root.left;
+            }
+        }
+        System.out.println(left);
+        System.out.println(right);
+        return Math.abs(target - left) >= Math.abs(right - target) ? right : left;
+    }
+}
