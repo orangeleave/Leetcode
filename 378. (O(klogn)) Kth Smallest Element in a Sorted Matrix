@@ -1,0 +1,26 @@
+public class Solution {
+    public int kthSmallest(int[][] matrix, int k) {
+        PriorityQueue<Tuple> pq = new PriorityQueue<>(new Comparator<Tuple>() {
+            public int compare(Tuple o1, Tuple o2) {
+                return o1.val - o2.val;
+            }
+        });
+        for (int j = 0; j < matrix[0].length; j++) {
+            pq.offer(new Tuple(0, j, matrix[0][j]));
+        }
+        for (int i = 0; i < k - 1; i++) {
+            Tuple tmp = pq.poll();
+            if (tmp.x == matrix.length - 1)     continue;
+            pq.offer(new Tuple(tmp.x + 1, tmp.y, matrix[tmp.x + 1][tmp.y]));
+        }
+        return pq.poll().val;
+    }
+}
+class Tuple {
+    int x, y, val;
+    public Tuple(int x, int y, int val) {
+        this.x = x;
+        this.y = y;
+        this.val = val;
+    }
+}
