@@ -10,8 +10,6 @@ public class Solution {
                 root = root.left;
             }
         }
-        System.out.println(left);
-        System.out.println(right);
         return Math.abs(target - left) >= Math.abs(right - target) ? right : left;
     }
 }
