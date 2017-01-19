@@ -12,7 +12,7 @@ public class Solution {
                 if (ele.contains(nums[i]))  continue;
                 ele.add(nums[i]);
                 helper(res, nums, ele);
-                ele.remove(ele.get(ele.size() - 1));
+                ele.remove(ele.size() - 1);
             }
         }
     }
