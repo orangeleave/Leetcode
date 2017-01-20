@@ -1,0 +1,55 @@
+public class Solution {
+    public String originalDigits(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        List<Integer> list = new ArrayList<>();
+        while (!map.isEmpty()) {
+            if (map.containsKey('z')) {
+                addInt(map, list, 0, 'z', "zero");
+            }
+            else if (map.containsKey('x')) {
+                addInt(map, list, 6, 'x', "six");
+            }
+            else if (map.containsKey('s')) {
+                addInt(map, list, 7, 's', "seven");
+            }
+            else if (map.containsKey('g')) {
+                addInt(map, list, 8, 'g', "eight");
+            }
+            else if (map.containsKey('u')) {
+                addInt(map, list, 4, 'u', "four");
+            }
+            else if (map.containsKey('v')) {
+                addInt(map, list, 5, 'v', "five");
+            }
+            else if (map.containsKey('h')) {
+                addInt(map, list, 3, 'h', "three");
+            }
+            else if (map.containsKey('w')) {
+                addInt(map, list, 2, 'w', "two");
+            }
+            else if (map.containsKey('o')) {
+                addInt(map, list, 1, 'o', "one");
+            }
+            else {
+                addInt(map, list, 9, 'e', "nine");
+            }
+        }
+        Collections.sort(list);
+        StringBuilder sb = new StringBuilder();
+        for (int i : list)  sb.append(i);
+        return sb.toString();
+    }
+    private void addInt(Map<Character, Integer> map, List<Integer> list, int ele, char ch, String str) {
+        int count = map.get(ch);
+        for (int i = 0; i < count; i++) {
+            list.add(ele);
+        }
+        for (char c : str.toCharArray()) {
+            map.put(c, map.get(c) - count);
+            if (map.get(c) == 0)    map.remove(c);
+        }
+    }
+}
