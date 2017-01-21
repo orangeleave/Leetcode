@@ -1,0 +1,47 @@
+public class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> res = new ArrayList<>();
+        char[][] board = new char[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = '.';
+            }
+        }
+        backtrack(res, board, 0);
+        return res;
+    }
+    private void backtrack(List<List<String>> res, char[][] board, int row) {
+        if (row == board.length) {
+            res.add(toList(board));
+        } else {
+            for (int queen = 0; queen < board[0].length; queen++) {
+                if (isValid(board, row, queen)) {
+                    board[row][queen] = 'Q';
+                    backtrack(res, board, row + 1);
+                    board[row][queen] = '.';
+                }
+            }
+        }
+    }
+    private boolean isValid(char[][] board, int row, int queen) {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == 'Q' && (j == queen || i + j == row + queen || i - j == row - queen)) {
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+    private List<String> toList(char[][] board) {
+        List<String> res = new ArrayList<>();
+        for (char[] row : board) {
+            StringBuilder sb = new StringBuilder();
+            for (char c : row) {
+                sb.append(c);
+            }
+            res.add(sb.toString());
+        }
+        return res;
+    }
+}
