@@ -1,0 +1,30 @@
+public class Solution {
+    int res = 0;
+    public int totalNQueens(int n) {
+        char[][] board = new char[n][n];
+        backtrack(board, 0);
+        return res;
+    }
+    private void backtrack(char[][] board, int row) {
+        if (row == board.length) {
+            res++;
+        } else {
+            for (int queen = 0; queen < board[0].length; queen++) {
+                if (isValid(board, row, queen)) {
+                    board[row][queen] = 'Q';
+                    backtrack(board, row + 1);
+                    board[row][queen] = '.';
+                }
+            }
+        }
+    }
+    private boolean isValid(char[][] board, int row, int queen) {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == 'Q' && (j == queen || i + j == row + queen || i - j == row - queen))
+                    return false;
+            }
+        }
+        return true;
+    }
+}
