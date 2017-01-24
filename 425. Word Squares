@@ -1,0 +1,52 @@
+public class Solution {
+    private class TrieNode {
+        TrieNode[] nodes;
+        String word;
+        TrieNode() {
+            nodes = new TrieNode[26];
+            word = new String();
+        }
+    }
+    private void addToTrie(TrieNode root, String word) {
+        TrieNode node = root;
+        for (char c : word.toCharArray()) {
+            int index = c - 'a';
+            if (node.nodes[index] == null)  node.nodes[index] = new TrieNode();
+            node = node.nodes[index];
+        }
+        node.word = word;
+    }
+    public List<List<String>> wordSquares(String[] words) {
+        List<List<String>> res = new ArrayList<>();
+        if (words == null || words.length == 0)     return res;
+        TrieNode root = new TrieNode();
+        for (String word : words)   addToTrie(root, word);
+        TrieNode[] rows = new TrieNode[words[0].length()];
+        for (int i = 0; i < rows.length; i++)    rows[i] = root;
+        backtrack(res, rows, 0, 0);
+        return res;
+    }
+    private void backtrack(List<List<String>> res, TrieNode[] rows, int row, int col) {
+        if (row == col && row == rows.length) {
+            List<String> ele = new ArrayList<>();
+            for (int i = 0; i < rows.length; i++)  ele.add(new String(rows[i].word));
+            res.add(ele);
+        } else {
+            if (col < rows.length) {
+                TrieNode prevRow = rows[row];
+                TrieNode prevCol = rows[col];
+                for (int i = 0; i < 26; i++) {
+                    if (rows[row].nodes[i] != null && rows[col].nodes[i] != null) {
+                        rows[row] = rows[row].nodes[i];
+                        if (col != row)     rows[col] = rows[col].nodes[i];
+                        backtrack(res, rows, row, col + 1);
+                        rows[row] = prevRow;
+                        if (col != row)     rows[col] = prevCol;
+                    }
+                }
+            } else {
+                backtrack(res, rows, row + 1, row + 1);
+            }
+        }
+    }
+}
