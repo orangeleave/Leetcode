@@ -1,4 +1,21 @@
 public class Solution {
+//modified version
+    public String licenseKeyFormatting(String S, int K) {
+        StringBuilder sb = new StringBuilder();
+        int len = 0;
+        for (int i = S.length() - 1; i >= 0; i--) {
+            if (S.charAt(i) != '-') {
+                if (len > 0 && len % K == 0) {
+                    sb.append('-');
+                }
+                sb.append(Character.toUpperCase(S.charAt(i)));
+                len++;
+            }
+        }
+        return sb.reverse().toString();
+    }
+
+//old version
     public String licenseKeyFormatting(String S, int K) {
         StringBuilder sb = new StringBuilder();
         StringBuilder ele = new StringBuilder();
