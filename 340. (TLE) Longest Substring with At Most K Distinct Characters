@@ -1,0 +1,21 @@
+public class Solution {
+    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+        int len = s.length();
+        int res = -1;
+        while (len >= 1) {
+            for (int i = 0; i <= s.length() - len; i++) {
+                int count = 0;
+                Set<Character> set = new HashSet<>();
+                for (char c : s.substring(i, i + len).toCharArray()) {
+                    if (!set.contains(c)) {
+                        count++;
+                        set.add(c);
+                    }
+                }
+                if (count <= k)     res = Math.max(res, len);
+            }
+            len--;
+        }
+        return res == -1 ? 0 : res;
+    }
+}
