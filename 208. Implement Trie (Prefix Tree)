@@ -1,7 +1,8 @@
 public class Trie {
     public class TrieNode {
         TrieNode[] children = new TrieNode[26];
-        String value = "";
+        String value = ""; // Two ways to implement the TrieNode
+        // boolean isWord = false;
     }
     
     TrieNode root;
@@ -21,6 +22,7 @@ public class Trie {
             node = node.children[c - 'a'];
         }
         node.value = word;
+        // node.isWord = true;
     }
     
     /** Returns if the word is in the trie. */
@@ -33,6 +35,7 @@ public class Trie {
             node = node.children[c - 'a'];
         }
         return node.value.equals(word);
+        // return node.isWord;
     }
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
