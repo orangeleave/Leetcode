@@ -1,0 +1,19 @@
+public class Solution {
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder ele = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            if (c == ' ') {
+                sb.append(ele.reverse().toString());
+                sb.append(' ');
+                ele = new StringBuilder();
+            } else {
+                ele.append(c);
+            }
+        }
+        if (ele != null) {
+            sb.append(ele.reverse().toString());
+        }
+        return sb.toString();
+    }
+}
