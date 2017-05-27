@@ -1,0 +1,25 @@
+public class Solution {
+    public String reverseWords(String s) {
+        char[] res = s.toCharArray();
+        for (int i = 0; i < res.length; i++) {
+            if (res[i] != ' ') {
+                int j = i;
+                while (j < res.length - 1 && res[j + 1] != ' ') {
+                    j++;
+                }
+                reverse(res, i, j);
+                i = j;
+            }
+        }
+        return new String(res);
+    }
+    public void reverse(char[] res, int i, int j) {
+        while (i < j) {
+            char tmp = res[i];
+            res[i] = res[j];
+            res[j] = tmp;
+            i++;
+            j--;
+        }
+    }
+}
