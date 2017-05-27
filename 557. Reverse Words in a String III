@@ -1,4 +1,18 @@
 public class Solution {
+
+//New Version
+    public String reverseWords(String s) {
+        String[] words = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            StringBuilder ele = new StringBuilder(word);
+            sb.append(ele.reverse()).append(' ');
+        }
+        return sb.toString().trim();
+    }
+
+
+//Old Version
     public String reverseWords(String s) {
         StringBuilder sb = new StringBuilder();
         StringBuilder ele = new StringBuilder();
