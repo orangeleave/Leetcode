@@ -1,0 +1,18 @@
+public class Solution {
+    public int numWays(int n, int k) {
+        if (n == 0 || k == 0) {
+            return 0;
+        }
+        int[] res = new int[n];
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                res[i] = k;
+            } else if (i == 1) {
+                res[i] = k * k;
+            } else {
+                res[i] = (k - 1) * res[i - 2] + (k - 1) * res[i - 1];
+            }
+        }
+        return res[n - 1];
+    }
+}
