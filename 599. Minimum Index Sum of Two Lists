@@ -1,4 +1,27 @@
 public class Solution {
+
+//New Verison
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        int sum = Integer.MAX_VALUE;
+        Map<String, Integer> map = new HashMap<>();
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < list1.length; i++) {
+            map.put(list1[i], i);
+        }
+        for (int j = 0; j < list2.length; j++) {
+            Integer idx = map.get(list2[j]);
+            if (idx != null && sum >= idx + j) {
+                if (sum > idx + j) {
+                    res = new ArrayList<>();
+                }
+                sum = idx + j;
+                res.add(list2[j]);
+            }
+        }
+        return res.toArray(new String[res.size()]);
+    }
+
+//Old Version
     public String[] findRestaurant(String[] list1, String[] list2) {
         int sum = list1.length + list2.length;
         List<String> l = new ArrayList<>();
