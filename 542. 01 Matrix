@@ -1,0 +1,45 @@
+public class Solution {
+    public class Tuple {
+        int x;
+        int y;
+        int d;
+        public Tuple(int x, int y, int d) {
+            this.x = x;
+            this.y = y;
+            this.d = d;
+        }
+    }
+    public int[][] updateMatrix(int[][] matrix) {
+        Queue<Tuple> q = new LinkedList<>();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == 0) {
+                    q.offer(new Tuple(i, j, 0));
+                }
+            }
+        }4
+        int[][] res = new int[matrix.length][matrix[0].length];
+        while (!q.isEmpty()) {
+            Tuple t = q.poll();
+            int x = t.x;
+            int y = t.y;
+            if (x > 0 && matrix[x - 1][y] != 0 && res[x - 1][y] == 0) {
+                res[x - 1][y] =  t.d + 1;
+                q.offer(new Tuple(x - 1, y, t.d + 1));
+            }
+            if (x < matrix.length - 1 && matrix[x + 1][y] != 0 && res[x + 1][y] == 0) {
+                res[x + 1][y] = t.d + 1;
+                q.offer(new Tuple(x + 1, y, t.d + 1));
+            }
+            if (y > 0 && matrix[x][y - 1] != 0 && res[x][y - 1] == 0) {
+                res[x][y - 1] = t.d + 1;
+                q.offer(new Tuple(x, y - 1, t.d + 1));
+            }
+            if (y < matrix[0].length - 1 && matrix[x][y + 1] != 0 && res[x][y + 1] == 0) {
+                res[x][y + 1] = t.d + 1;
+                q.offer(new Tuple(x, y + 1, t.d + 1));
+            }
+        }
+        return res;
+    }
+}
