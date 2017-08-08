@@ -1,0 +1,12 @@
+public class Solution {
+    public int rob(int[] nums) {
+        int robCurr= 0;
+        int passCurr = 0;
+        for (int num : nums) {
+            int tmp = passCurr;
+            passCurr = Math.max(robCurr, passCurr);
+            robCurr = num + tmp;
+        }
+        return Math.max(robCurr, passCurr);
+    }
+}
