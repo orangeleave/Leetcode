@@ -1,0 +1,24 @@
+class Solution {
+    private int left, maxLength;
+    public String longestPalindrome(String s) {
+        if (s.length() < 2) {
+            return s;
+        }
+        for (int pos = 0; pos < s.length() - 1; pos++) {
+            extendString(s, pos, pos); // Assume the result is odd-length
+            extendString(s, pos, pos + 1); //Assume the result is even-length
+        }
+        return s.substring(left, left + maxLength);
+    }
+    public void extendString(String s, int i, int j) {
+        while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
+            i--;
+            j++;
+        }
+        // Notice: at this time, the right substring should begins at (i + 1), and ends at(j - 1)
+        if (maxLength < j - i - 1) {
+            left = i + 1;
+            maxLength = j - i - 1;
+        }
+    }
+}
