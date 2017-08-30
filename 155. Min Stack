@@ -1,3 +1,6 @@
+// The main idea is to push the old min when updating the current min as well as the new element,
+// so that we can kind like keeping tracking of 2nd min element when remove the 1st.
+
 class MinStack {
     Stack<Integer> stack;
     int min;
