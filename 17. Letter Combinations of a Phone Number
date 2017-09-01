@@ -1,0 +1,28 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        String[] mapping = new String[]{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        List<String> res = new ArrayList<>();
+        for (char digit : digits.toCharArray()) {
+            int idx = digit - '0';
+            if (idx < 2) {
+                return res;
+            } else {
+                idx -= 2;
+            }
+            String elements = mapping[idx];
+            List<String> tmp = new ArrayList<>();
+            for (char ele : elements.toCharArray()) {
+                if (res.isEmpty()) {
+                    tmp.add(Character.toString(ele));
+                } else {
+                    for (int i = 0; i < res.size(); i++) {
+                        String newEle = res.get(i) + Character.toString(ele);
+                        tmp.add(newEle);
+                    }
+                }
+            }
+            res = new ArrayList<>(tmp);
+        }
+        return res;
+    }
+}
