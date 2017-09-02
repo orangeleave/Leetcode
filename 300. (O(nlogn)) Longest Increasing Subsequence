@@ -1,0 +1,25 @@
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        // https://discuss.leetcode.com/topic/28738/java-python-binary-search-o-nlogn-time-with-explanation
+        int[] tails = new int[nums.length];
+        int res = 0;
+        for (int num : nums) {
+            int l = 0, r = res;
+            while (l < r) {
+                int m = (l + r) / 2;
+                if (tails[m] < num) {
+                    l = m + 1;
+                } else {
+                    r = m;
+                }
+            }
+            // Find the element of tails array that need to be updated
+            tails[l] = num;
+            // If updated the largest size, then increase the current size since we include a new tail
+            if (l == res) {
+                res++;
+            }
+        }
+        return res;
+    }
+}
