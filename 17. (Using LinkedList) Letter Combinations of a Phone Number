@@ -1,0 +1,25 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        LinkedList<String> res = new LinkedList<>();
+        if (digits.length() == 0) {
+            return res;
+        }
+        String[] mapping = new String[]{"abc", "def", "ghi", "kjl", "mno", "pqrs", "tuv", "wxyz"};
+        res.add("");  // To make sure we can use the following for-loop
+        for (int i = 0; i < digits.length(); i++) {
+            int idx = digits.charAt(i) - '0';
+            if (idx < 2) {
+                return new ArrayList<>();
+            } else {
+                idx -= 2;
+            }
+            while (res.peek().length() == i) {
+                String tmp = res.poll();
+                for (char ele : mapping[idx].toCharArray()) {
+                    res.add(tmp + ele);
+                }
+            }
+        }
+        return res;
+    }
+}
