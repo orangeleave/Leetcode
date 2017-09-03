@@ -1,0 +1,20 @@
+class Solution {
+    public int bulbSwitch(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        int[] counts = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            int pos = i;
+            while (pos <= n) {
+                counts[pos]++;
+                pos += i;
+            }
+        }
+        int res = 0;
+        for (int count : counts) {
+            res += count % 2 == 0 ? 0 : 1;
+        }
+        return res;
+    }
+}
