@@ -1,0 +1,24 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        // The inorder-successor of given node in BST,
+        // should be the smallest node that is greater that the given node.
+        if (root == null) {
+            return null;
+        }
+        if (root.val <= p.val) {
+            return inorderSuccessor(root.right, p);
+        } else {
+            TreeNode left = inorderSuccessor(root.left, p);
+            return left == null ? root : left;
+        }
+    }
+}
