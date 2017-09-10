@@ -1,0 +1,27 @@
+public class Solution {
+    public void reverseWords(char[] s) {
+        // Reverse the whole string
+        reverse(s, 0, s.length - 1);
+        // Reverse the current string word by word
+        int j = 0;  // the right pointer
+        while (j < s.length) {
+            int i = j;  // the left pointer
+            while (j < s.length && s[j] != ' ') {
+                j++;
+            }
+            reverse(s, i, j - 1);
+            j++;
+        }
+        return;
+    }
+    public void reverse(char[] s, int i, int j) {
+        while (i < j) {
+            char tmp = s[i];
+            s[i] = s[j];
+            s[j] = tmp;
+            i++;
+            j--;
+        }
+        return;
+    }
+}
