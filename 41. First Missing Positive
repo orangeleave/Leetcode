@@ -1,0 +1,44 @@
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        // Egde case 1
+        if (nums == null || nums.length == 0) {
+            return 1;
+        }
+        // Edge case 2
+        if (nums.length == 1) {
+            return nums[0] == 1 ? 2 : 1;
+        }
+        // Using quick select to arrange all the positive ones to the left of 0
+        int i = 0; // Pointer i indicates the last element of positive numbers
+        int j = 0; // Pointer j is used for scanning
+        while (j < nums.length) {
+            if (nums[j] > 0) {
+                int tmp = nums[j];
+                nums[j] = nums[i];
+                nums[i] = tmp;
+                i++;
+                j++;
+            } else {
+                j++;
+            }
+        }
+        // Notice that pointer i after while-loop is at the position of first 0
+        // Scan the left part - 1st round - flip the corresponding elements into negative
+        for (int k = 0; k < i; k++) {
+            int idx = Math.abs(nums[k]);
+            if (idx <= i && nums[idx - 1] > 0) {
+                nums[idx - 1] = -(nums[idx - 1]);
+            }
+        }
+        // Scan the left part - 2nd round - find out the missing first positive
+        for (int k = 0; k < i; k++) {
+            if (nums[k] > 0) {
+                return k + 1;
+            }
+        }
+        // If they're all flipped correctly
+        return i + 1;
+    }
+}
+
+
