@@ -1,0 +1,33 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int maxSum;
+    public int maxPathSum(TreeNode root) {
+        maxSum = Integer.MIN_VALUE;
+        helper(root);
+        return maxSum;
+    }
+    public int helper(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        // It can dig into the left/right subtree, or just stay,
+        // which depends on if the left/right subtree returns a negative subsum or not
+        int left = Math.max(0, helper(node.left));
+        int right = Math.max(0, helper(node.right));
+        // If the input node is the highest node of path,
+        int currSum = left + right + node.val;
+        // and then update the maximum value if necessrary
+        maxSum = Math.max(maxSum, currSum);
+        // If not, we should go back to the input node's parent,
+        // which means we should only keep the left or right subtree
+        return Math.max(left, right) + node.val;
+    }
+}
