@@ -1,0 +1,30 @@
+/**
+ * Definition for undirected graph.
+ * class UndirectedGraphNode {
+ *     int label;
+ *     List<UndirectedGraphNode> neighbors;
+ *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
+ * };
+ */
+public class Solution {
+    // Create a hashmap to store the visited nodes using the label as key
+    private Map<Integer, UndirectedGraphNode> visited = new HashMap<>();
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        // Case 1: if the current node is null, directly return null
+        if (node == null) {
+            return null;
+        }
+        // Case 2: if the visited contains the current node, directly return this node
+        if (visited.containsKey(node.label)) {
+            return visited.get(node.label);
+        }
+        // New a node to clone the graph using the current node's label
+        UndirectedGraphNode clone = new UndirectedGraphNode(node.label);
+        // Update the visited by adding node clone to it
+        visited.put(clone.label, clone);
+        for (UndirectedGraphNode neighbor : node.neighbors) {
+            clone.neighbors.add(cloneGraph(neighbor));
+        }
+        return clone;
+    }
+}
