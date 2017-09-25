@@ -14,7 +14,7 @@ public class Solution {
         if (node == null) {
             return null;
         }
-        // Case 2: if the visited contains the current node, directly return this node
+        // Case 2: if the visited contains the current node, directly return it's value
         if (visited.containsKey(node.label)) {
             return visited.get(node.label);
         }
